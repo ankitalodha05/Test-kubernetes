@@ -78,27 +78,27 @@ Before you start, ensure you have the following installed:
 ## Step 4: Deploy a Test Application
 1. Create a deployment YAML file in VS Code:
    - Go to **File > New File** and save it as `deployment.yaml`.
-   - Example content:
+   - Use the following content:
      ```yaml
      apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2  # tell deployment to run 2 pods matching this template
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+     kind: Deployment
+     metadata:
+       name: nginx-deployment
+     spec:
+       selector:
+         matchLabels:
+           app: nginx
+       replicas: 2  # Run 2 pods matching this template
+       template:
+         metadata:
+           labels:
+             app: nginx
+         spec:
+           containers:
+           - name: nginx
+             image: nginx:latest
+             ports:
+             - containerPort: 80
      ```
 2. Apply the deployment:
    ```bash
@@ -112,12 +112,12 @@ spec:
 
 4. Expose the application:
    ```bash
-   kubectl expose deployment hello-minikube --type=NodePort --port=8080
+   kubectl expose deployment nginx-deployment --type=NodePort --port=80
    ```
 
 5. Access the application:
    ```bash
-   minikube service hello-minikube
+   minikube service nginx-deployment
    ```
    This command opens the application in your default web browser.
 
