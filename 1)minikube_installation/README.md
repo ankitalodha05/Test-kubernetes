@@ -81,24 +81,24 @@ Before you start, ensure you have the following installed:
    - Example content:
      ```yaml
      apiVersion: apps/v1
-     kind: Deployment
-     metadata:
-       name: hello-minikube
-     spec:
-       replicas: 1
-       selector:
-         matchLabels:
-           app: hello-minikube
-       template:
-         metadata:
-           labels:
-             app: hello-minikube
-         spec:
-           containers:
-           - name: hello-minikube
-             image: k8s.gcr.io/echoserver:1.4
-             ports:
-             - containerPort: 8080
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2  # tell deployment to run 2 pods matching this template
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
      ```
 2. Apply the deployment:
    ```bash
