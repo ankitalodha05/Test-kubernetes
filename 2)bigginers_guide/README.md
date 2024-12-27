@@ -33,24 +33,24 @@ System pods handle essential cluster functionality.
     Example content for `deployment.yaml`:
     ```yaml
     apiVersion: apps/v1
-    kind: Deployment
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2  # tell deployment to run 2 pods matching this template
+  template:
     metadata:
-      name: example-deployment
+      labels:
+        app: nginx
     spec:
-      replicas: 2
-      selector:
-        matchLabels:
-          app: example-app
-      template:
-        metadata:
-          labels:
-            app: example-app
-        spec:
-          containers:
-          - name: example-container
-            image: nginx
-            ports:
-            - containerPort: 80
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
     ```
 2. Apply the deployment:
     ```bash
