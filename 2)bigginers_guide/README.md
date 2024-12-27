@@ -5,6 +5,7 @@ Kubernetes, an open-source container orchestration platform, simplifies the depl
 ---
 
 ## Setting Up Kubernetes with Minikube
+
 Minikube is a lightweight Kubernetes implementation that runs locally, useful for learning and testing Kubernetes. Below is a walkthrough of key commands and concepts:
 
 ### 1. Checking Minikube Status
@@ -26,6 +27,7 @@ System pods handle essential cluster functionality.
 ## Deploying Applications with Kubernetes
 
 ### 1. Creating a Deployment
+
 1. Open or create a YAML configuration file for the deployment:
     ```bash
     nano deployment.yaml
@@ -33,29 +35,30 @@ System pods handle essential cluster functionality.
     Example content for `deployment.yaml`:
     ```yaml
     apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2  # tell deployment to run 2 pods matching this template
-  template:
+    kind: Deployment
     metadata:
-      labels:
-        app: nginx
+      name: nginx-deployment
     spec:
-      containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+      selector:
+        matchLabels:
+          app: nginx
+      replicas: 2  # tell deployment to run 2 pods matching this template
+      template:
+        metadata:
+          labels:
+            app: nginx
+        spec:
+          containers:
+          - name: nginx
+            image: nginx:latest
+            ports:
+            - containerPort: 80
     ```
 2. Apply the deployment:
     ```bash
     kubectl apply -f deployment.yaml
     ```
+
     **How It Works:**
     - The `kubectl apply` command submits the configuration to the Kubernetes API server.
     - The API server validates the configuration and stores it in `etcd`, the cluster’s distributed key-value store.
@@ -97,6 +100,7 @@ To find the IP address assigned to a pod:
 ```bash
 kubectl describe pod mypod | grep IP
 ```
+
 ---
 
 ## Interacting with Nodes and Containers
@@ -126,6 +130,7 @@ docker ps
 ---
 
 ## Key Takeaways
+
 - **Minikube:** Simplifies running Kubernetes locally for learning and development.
 - **Kubernetes API Server:** Central control point that validates and stores configurations.
 - **etcd:** Stores all cluster state data, including pod definitions and statuses.
