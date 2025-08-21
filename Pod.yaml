@@ -1,0 +1,28 @@
+apiVersion: v1        # ✅ Which API schema to use (Pods belong to core/v1 API)
+kind: Pod             # ✅ Category of object (Pod, Deployment, Service, etc.)
+metadata:             # ✅ Basic info (name, labels)
+  name: myapp         # Name of the Pod (must be lowercase, no spaces)
+  namespace: demo     # (Optional) Namespace to scope this Pod
+  labels:             
+    app: webapp       # Key-value pair for grouping
+    type: frontend
+
+spec:                 # ✅ What should be inside / how the object should behave
+  containers:        
+    - name: nginx-container   # Main application container
+      image: nginx            # Docker image to run (from Docker Hub by default)
+    - name: busybox-sidecar   # Example sidecar container
+      image: busybox
+      command: ["sh", "-c", "echo Sidecar container running; sleep 3600"]
+
+  volumes:            # Example: Pod volumes can be mounted into containers
+    - name: shared-data
+      emptyDir: {}    # An emptyDir volume is created when the Pod starts
+
+I updated your YAML to include:
+
+* a `namespace: demo` under metadata,
+* a second container (`busybox-sidecar`), and
+* a simple `volumes` example using `emptyDir`.
+
+This gives you a more complete Pod manifest to study.
