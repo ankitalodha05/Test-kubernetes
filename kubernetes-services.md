@@ -189,6 +189,25 @@ another senario to understand this services
 * Later, switch to **LoadBalancer** when going live for customers.
 
 ---
+<img width="976" height="458" alt="image" src="https://github.com/user-attachments/assets/6263e893-6f9d-47b3-8b72-777e03391b91" />
+
+Ports meaning (NodePort example shown):
+
+targetPort: the port inside the container where the app listens (e.g., 80 for nginx, 8080 for Tomcat, etc.).
+
+port: the Service’s port (virtual, inside the cluster).
+
+nodePort: the node’s external port (e.g., 30008) exposed on every worker node.
+
+Flow (NodePort): Client → NodeIP:nodePort → Service port → Pod targetPort.
+
+NodePort range: default 30000–32767 (if you don’t specify, Kubernetes will assign one in this range).
+
+Service IP: stable virtual IP; Service forwards to the matching Pods.
+
+One Service → many Pods (replicas): Service load‑balances across them.
+
+Sometimes port and targetPort are set to the same value “for convenience”, but they can be different.
 
 
 
