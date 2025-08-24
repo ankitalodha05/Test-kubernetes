@@ -209,7 +209,7 @@ One Service → many Pods (replicas): Service load‑balances across them.
 
 Sometimes port and targetPort are set to the same value “for convenience”, but they can be different.
 
-
+thanks
 
 
 
