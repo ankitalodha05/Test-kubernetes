@@ -15,3 +15,28 @@ The inner spec: (under template) belongs to the Pod (defines containers, images,
 Deployment spec → "How many Pods do I want and how to manage them?"
 
 Pod spec (inside template) → "What’s inside each Pod?"
+
+🔎 What is template in Kubernetes Deployment?
+
+The template is basically the Pod blueprint.
+
+It tells Kubernetes: “Whenever I need a new Pod, create it using this exact template.”
+
+This template includes Pod metadata (labels, annotations) and the Pod spec (containers, volumes, etc.).
+
+Key parts of template
+
+metadata (inside template)
+
+Labels and annotations applied to the Pods.
+
+These must match the selector of the Deployment/ReplicaSet.
+
+Example:
+
+metadata:
+  labels:
+    app: nginx
+
+
+👉 Without matching labels, the Deployment won’t recognize/manage those Pods.
